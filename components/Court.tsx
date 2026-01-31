@@ -19,7 +19,7 @@ type Point = { x: number, y: number };
 type DragMode = 'start' | 'end' | 'draw_new' | null;
 
 export const Court: React.FC<CourtProps> = ({ 
-    myLineup, opLineup, myRoles, opRoles, state, activeSide, selectedPos, action,
+    myLineup, opLineup, state, activeSide, selectedPos, action,
     onDrawingComplete, onRotate
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
