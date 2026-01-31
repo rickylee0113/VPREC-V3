@@ -194,9 +194,9 @@ export const Court: React.FC<CourtProps> = ({
                 return (
                     <g key={`me-${p}`} className="pointer-events-none">
                         <text 
-                            x={x} y={y + 0.2} 
+                            x={x} y={y + 0.35} 
                             textAnchor="middle" 
-                            fontSize="0.5" 
+                            fontSize="1" 
                             fill="white" 
                             opacity="0.6" 
                             fontWeight="900"
@@ -215,9 +215,9 @@ export const Court: React.FC<CourtProps> = ({
                 return (
                     <g key={`op-${p}`} className="pointer-events-none">
                         <text 
-                            x={x} y={y + 0.2} 
+                            x={x} y={y + 0.35} 
                             textAnchor="middle" 
-                            fontSize="0.5" 
+                            fontSize="1" 
                             fill="white" 
                             opacity="0.6" 
                             fontWeight="900"

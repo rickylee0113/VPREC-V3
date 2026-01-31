@@ -429,13 +429,13 @@ export const GameView: React.FC<GameViewProps> = ({
       return (
         <button 
             onClick={handleClick}
-            className="relative bg-neutral-800 border border-neutral-600 rounded-lg h-full aspect-[4/3] min-w-[50px] flex items-center justify-center shadow-[0_4px_0_rgba(0,0,0,0.5)] overflow-hidden shrink-0 mx-1 active:translate-y-1 transition-transform"
+            className="relative bg-neutral-800 border border-neutral-600 rounded-lg h-full aspect-[4/3] md:min-w-[50px] flex items-center justify-center shadow-[0_4px_0_rgba(0,0,0,0.5)] overflow-hidden shrink-0 mx-0.5 md:mx-1 active:translate-y-1 transition-transform"
         >
             {/* Shine effect */}
             <div className="absolute top-0 left-0 right-0 h-1/2 bg-white/5 pointer-events-none"></div>
             {/* Middle Line */}
             <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-black/60 w-full z-10"></div>
-            <span className="font-mono font-black text-white relative z-0 leading-none tracking-tighter text-4xl md:text-5xl lg:text-6xl">
+            <span className="font-mono font-black text-white relative z-0 leading-none tracking-tighter text-3xl md:text-5xl lg:text-6xl">
                 {score.toString().padStart(2, '0')}
             </span>
         </button>
@@ -456,10 +456,10 @@ export const GameView: React.FC<GameViewProps> = ({
         <button 
             onClick={onClick}
             disabled={disabled}
-            className={`h-full px-2 min-w-[36px] flex items-center justify-center rounded-md border-b-2 active:border-b-0 active:translate-y-[2px] transition-all
-                ${bgColors[color]} text-white disabled:opacity-30 disabled:cursor-not-allowed shrink-0 p-1`}
+            className={`h-full px-1.5 md:px-2 min-w-[32px] md:min-w-[36px] flex items-center justify-center rounded-md border-b-2 active:border-b-0 active:translate-y-[2px] transition-all
+                ${bgColors[color]} text-white disabled:opacity-30 disabled:cursor-not-allowed shrink-0 p-0.5`}
         >
-             <div className="w-5 h-5 md:w-6 md:h-6 flex items-center justify-center">
+             <div className="w-4 h-4 md:w-6 md:h-6 flex items-center justify-center">
                 {children}
              </div>
         </button>
@@ -656,8 +656,8 @@ export const GameView: React.FC<GameViewProps> = ({
                         : 'bg-neutral-700 text-gray-300 border-transparent'}
             `}
         >
-            <span className="font-black leading-none text-base md:text-xl">{num}</span>
-            <span className="opacity-70 font-bold leading-none mt-[1px] text-[10px] md:text-xs">{pos}</span>
+            <span className="font-black leading-none text-sm md:text-xl">{num}</span>
+            <span className="opacity-70 font-bold leading-none mt-[1px] text-[8px] md:text-xs">{pos}</span>
         </button>
       );
   };
@@ -667,18 +667,18 @@ export const GameView: React.FC<GameViewProps> = ({
     <div className="w-full h-full bg-black flex items-center justify-center overflow-hidden">
         <div className="w-full h-full md:w-[95%] md:h-[95%] bg-neutral-900 border md:border-neutral-800 md:rounded-2xl flex flex-row overflow-hidden relative select-none shadow-2xl">
       
-            {/* 1. LEFT COLUMN: Rosters (14% Width) - Added min-width to prevent squishing */}
+            {/* 1. LEFT COLUMN: Rosters (14% Width) - Adjusted for mobile */}
             <div 
-                className="bg-neutral-800 border-r border-neutral-700 flex flex-row shrink-0 z-20 pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] w-[14%] min-w-[64px]"
+                className="bg-neutral-800 border-r border-neutral-700 flex flex-row shrink-0 z-20 pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] w-[64px] md:w-[14%]"
             >
                 <div className="flex-1 flex flex-col items-center py-1 px-0.5 border-r border-neutral-700/50 bg-neutral-800/50 overflow-y-auto no-scrollbar pt-2">
-                    <div className="text-accent font-bold mb-0.5 text-xs md:text-sm">我方</div>
+                    <div className="text-accent font-bold mb-0.5 text-[10px] md:text-sm">我方</div>
                     {Object.entries(initialMyLineup).map(([pos, num]) => renderSidebarItem('me', pos, num as string))}
                     <div className="my-0.5 w-full h-[1px] bg-white/10"></div>
                     {renderSidebarItem('me', 'L', initialMyLibero)}
                 </div>
                 <div className="flex-1 flex flex-col items-center py-1 px-0.5 overflow-y-auto no-scrollbar pt-2">
-                    <div className="text-red-500 font-bold mb-0.5 text-xs md:text-sm">對手</div>
+                    <div className="text-red-500 font-bold mb-0.5 text-[10px] md:text-sm">對手</div>
                     {Object.entries(initialOpLineup).map(([pos, num]) => renderSidebarItem('op', pos, num as string))}
                     <div className="my-0.5 w-full h-[1px] bg-white/10"></div>
                     {renderSidebarItem('op', 'L', initialOpLibero)}
@@ -689,10 +689,10 @@ export const GameView: React.FC<GameViewProps> = ({
             <div className="flex-1 flex flex-col relative bg-[#222] min-w-0 overflow-hidden">
                 
                 {/* HEADER (18% Height) */}
-                <div className="h-[18%] min-h-[64px] bg-neutral-800 border-b border-neutral-700 shrink-0 z-30 shadow-lg relative grid grid-cols-[auto_1fr_auto] items-center px-1 py-1">
+                <div className="h-[18%] min-h-[56px] max-h-[80px] bg-neutral-800 border-b border-neutral-700 shrink-0 z-30 shadow-lg relative grid grid-cols-[auto_1fr_auto] items-center px-2 py-0.5">
                     
                     {/* LEFT BUTTONS */}
-                    <div className="flex gap-1 pr-2">
+                    <div className="flex gap-1 pr-1">
                         <HeaderBtn onClick={onExit} color="neutral">
                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                         </HeaderBtn>
@@ -704,9 +704,9 @@ export const GameView: React.FC<GameViewProps> = ({
                     {/* CENTER SCOREBOARD */}
                     <div className="flex items-center justify-center gap-1 min-w-0">
                          {/* My Name */}
-                         <div className="flex flex-col items-end justify-center min-w-0 flex-1">
-                            <span className={`w-2 h-2 rounded-full mb-1 ${servingTeam === 'me' ? 'bg-accent animate-pulse' : 'bg-transparent'}`}></span>
-                            <span className={`font-black truncate w-full text-right text-lg md:text-3xl leading-none ${servingTeam === 'me' ? 'text-accent' : 'text-gray-300'}`}>
+                         <div className="flex flex-col items-end justify-center min-w-0 flex-[2]">
+                            <span className={`w-1.5 h-1.5 rounded-full mb-0.5 ${servingTeam === 'me' ? 'bg-accent animate-pulse' : 'bg-transparent'}`}></span>
+                            <span className={`font-black truncate w-full text-right text-base sm:text-xl md:text-2xl leading-none ${servingTeam === 'me' ? 'text-accent' : 'text-gray-300'}`}>
                                 {teamConfig.myName}
                             </span>
                          </div>
@@ -715,12 +715,12 @@ export const GameView: React.FC<GameViewProps> = ({
                          <BigScoreCard score={myScore} side="me" />
                          
                          {/* Sets Info */}
-                         <div className="flex flex-col items-center justify-center shrink-0 w-[50px] md:w-[60px] gap-1 mx-1">
-                            <span className="text-gray-500 font-bold border border-gray-600 px-1 py-0.5 rounded bg-neutral-900 text-[10px] md:text-xs whitespace-nowrap w-full text-center">SET {currentSet}</span>
-                            <div className="flex items-center justify-center w-full bg-neutral-900 border border-gray-600 rounded h-[24px]">
-                                <span className="text-gray-300 font-bold text-base leading-none">{mySetWins}</span>
-                                <span className="text-gray-500 font-bold text-xs mx-1">-</span>
-                                <span className="text-gray-300 font-bold text-base leading-none">{opSetWins}</span>
+                         <div className="flex flex-col items-center justify-center shrink-0 w-[40px] md:w-[60px] gap-0.5 mx-0.5">
+                            <span className="text-gray-500 font-bold border border-gray-600 px-1 py-0 rounded bg-neutral-900 text-[9px] md:text-xs whitespace-nowrap w-full text-center">SET {currentSet}</span>
+                            <div className="flex items-center justify-center w-full bg-neutral-900 border border-gray-600 rounded h-[20px] md:h-[24px]">
+                                <span className="text-gray-300 font-bold text-sm md:text-base leading-none">{mySetWins}</span>
+                                <span className="text-gray-500 font-bold text-[10px] mx-1">-</span>
+                                <span className="text-gray-300 font-bold text-sm md:text-base leading-none">{opSetWins}</span>
                             </div>
                         </div>
 
@@ -728,16 +728,16 @@ export const GameView: React.FC<GameViewProps> = ({
                          <BigScoreCard score={opScore} side="op" />
 
                          {/* Op Name */}
-                         <div className="flex flex-col items-start justify-center min-w-0 flex-1">
-                            <span className={`w-2 h-2 rounded-full mb-1 ${servingTeam === 'op' ? 'bg-red-500 animate-pulse' : 'bg-transparent'}`}></span>
-                            <span className={`font-black truncate w-full text-left text-lg md:text-3xl leading-none ${servingTeam === 'op' ? 'text-red-500' : 'text-gray-300'}`}>
+                         <div className="flex flex-col items-start justify-center min-w-0 flex-[2]">
+                            <span className={`w-1.5 h-1.5 rounded-full mb-0.5 ${servingTeam === 'op' ? 'bg-red-500 animate-pulse' : 'bg-transparent'}`}></span>
+                            <span className={`font-black truncate w-full text-left text-base sm:text-xl md:text-2xl leading-none ${servingTeam === 'op' ? 'text-red-500' : 'text-gray-300'}`}>
                                 {teamConfig.opName}
                             </span>
                          </div>
                     </div>
 
                     {/* RIGHT BUTTONS */}
-                    <div className="flex gap-1 pl-2">
+                    <div className="flex gap-1 pl-1">
                         <HeaderBtn onClick={onRedo} disabled={!canRedo} color="neutral">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5A5.5 5.5 0 0 0 4 14.5v0A5.5 5.5 0 0 0 9.5 20H13"/></svg>
                         </HeaderBtn>
@@ -774,34 +774,34 @@ export const GameView: React.FC<GameViewProps> = ({
                 </div>
             </div>
 
-            {/* 3. RIGHT COLUMN: Controls (10% Width) - Added min-width and removed Icon */}
+            {/* 3. RIGHT COLUMN: Controls (10% Width) - Adjusted for mobile */}
             <div 
-                className="bg-neutral-800 border-l border-neutral-700 flex flex-col shrink-0 z-20 pb-[env(safe-area-inset-bottom)] pr-[env(safe-area-inset-right)] w-[10%] min-w-[56px]"
+                className="bg-neutral-800 border-l border-neutral-700 flex flex-col shrink-0 z-20 pb-[env(safe-area-inset-bottom)] pr-[env(safe-area-inset-right)] w-[56px] md:w-[10%]"
             >
                 <div className="flex-1 flex flex-col pt-2 h-full">
                     <div className="flex-1 flex flex-col min-h-0">
                         <button onClick={() => handleResult(ResultType.POINT)} disabled={state !== 'RESULT_PENDING'} className={`flex-1 min-h-0 flex flex-col items-center justify-center border-b border-neutral-700 transition-all gap-1 ${state === 'RESULT_PENDING' ? 'bg-emerald-600 text-white opacity-100 hover:bg-emerald-500' : 'bg-neutral-800 text-gray-600 opacity-40 cursor-not-allowed'}`}>
-                            <div className="flex flex-col font-black leading-tight text-xl md:text-2xl">
+                            <div className="flex flex-col font-black leading-tight text-lg md:text-2xl">
                                 <span>得</span>
                                 <span>分</span>
                             </div>
                         </button>
                         <button onClick={() => handleResult(ResultType.ERROR)} disabled={state !== 'RESULT_PENDING'} className={`flex-1 min-h-0 flex flex-col items-center justify-center border-b border-neutral-700 transition-all gap-1 ${state === 'RESULT_PENDING' ? 'bg-red-600 text-white opacity-100 hover:bg-red-500' : 'bg-neutral-800 text-gray-600 opacity-40 cursor-not-allowed'}`}>
-                            <div className="flex flex-col font-black leading-tight text-xl md:text-2xl">
+                            <div className="flex flex-col font-black leading-tight text-lg md:text-2xl">
                                 <span>失</span>
                                 <span>誤</span>
                             </div>
                         </button>
                         <button onClick={() => handleResult(ResultType.NORMAL)} disabled={state !== 'RESULT_PENDING'} className={`flex-1 min-h-0 flex flex-col items-center justify-center border-b border-neutral-700 transition-all gap-1 ${state === 'RESULT_PENDING' ? 'bg-neutral-600 text-white opacity-100 hover:bg-neutral-500' : 'bg-neutral-800 text-gray-600 opacity-40 cursor-not-allowed'}`}>
-                             <div className="flex flex-col font-bold leading-tight text-base md:text-lg">
+                             <div className="flex flex-col font-bold leading-tight text-sm md:text-lg">
                                 <span>繼</span>
                                 <span>續</span>
                             </div>
                         </button>
                     </div>
-                    {/* Option Button: Removed Icon, Increased Text Size, Vertical Layout */}
-                    <button onClick={() => setShowOptions(true)} className="h-[20%] max-h-[70px] bg-neutral-900 border-t border-neutral-700 text-white font-bold flex flex-col items-center justify-center hover:bg-neutral-800 transition-colors shrink-0">
-                        <div className="flex flex-col leading-tight text-gray-400 text-sm md:text-base font-bold">
+                    {/* Option Button: Fixed height for better consistency */}
+                    <button onClick={() => setShowOptions(true)} className="h-[50px] md:h-[70px] bg-neutral-900 border-t border-neutral-700 text-white font-bold flex flex-col items-center justify-center hover:bg-neutral-800 transition-colors shrink-0">
+                        <div className="flex flex-col leading-tight text-gray-400 text-xs md:text-base font-bold">
                                 <span>選</span>
                                 <span>項</span>
                         </div>
